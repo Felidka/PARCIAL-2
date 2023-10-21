@@ -169,9 +169,7 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("lista", lista);
                     break;
                 case "GenerarVenta":
-
                     v = new Venta();
-
                     v.setIdcliente(cli.getId());
                     v.setIdempleado(2);
                     v.setNumserie(numeroserie);
