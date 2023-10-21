@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class EmpleadoDAO {
 
-    Conexion cn = new Conexion();
+    Conexion cn=new Conexion();
     Connection cone;
     PreparedStatement ps;
     ResultSet rs;

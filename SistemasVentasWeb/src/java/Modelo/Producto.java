@@ -13,13 +13,13 @@ public class Producto {
     private int id;
     private String nom;
     private String pre;
-    private String stock;
+    private int stock;
     private String estado;
 
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -40,11 +40,11 @@ public class Producto {
         this.pre = pre;
     }
 
-    public String getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
@@ -59,7 +59,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, String nom, String pre, String stock, String estado) {
+    public Producto(int id, String nom, String pre, int stock, String estado) {
         this.id = id;
         this.nom = nom;
         this.pre = pre;
