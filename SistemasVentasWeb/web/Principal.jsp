@@ -24,33 +24,28 @@
                         <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu=Producto" target="myFrame">Producto</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu=Empleado" target="myFrame" >Empleado</a>
+                        <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu=Empleado&accion=Listar" target="myFrame" >Empleado</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu=Clientes" target="myFrame" >Clientes</a>
+                        <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu=Cliente" target="myFrame" >Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu    =NuevaVenta" target="myFrame" >Nueva Venta</a>
+                        <a style="margin-left: 10px; border: none;" class="btn btn-outline-light" href="Controlador?menu=NuevaVenta&accion=default" target="myFrame" >Nueva Venta</a>
                     </li>
                 </ul>
             </div>
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle" type="button" id="drodownMenu" data-toggle="dropdown" aria-expanded="false">
-                    Usuario ingresado
-                    <%--
-                    
                     ${usuario.getNom()}
-                    --%>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Userio<%--
-                    
-                    ${usuario.getUser()}
-                        --%></a>
+                    <a class="dropdown-item" href="#">
+                    ${usuario.getUser()}                    
+                    </a>
                     <a class="dropdown-item" href="#">User@gmai.com</a>
                     <div class="dropdown-divider"></div>
-                    <form action="index.jsp" method="POST"> 
-                        <button name="accion" value="Salir"class="dropdown-item" href="#">Salir</button>
+                    <form action="Validar" method="POST"> 
+                        <button name="accion" value="Salir" class="dropdown-item" href="#">Salir</button>
                     </from>
                 </div>
             </div> 

@@ -98,7 +98,9 @@ public class EmpleadoDAO {
             while(rs.next()){
                 emp.setDni(rs.getString(2));
                 emp.setNom(rs.getString(3));
-                emp.setTel(sql);
+                emp.setTel(rs.getString(4));
+                emp.setEstado(rs.getString(5));
+                emp.setUser(rs.getString(6));
             }
         } catch (Exception e) {
 
@@ -125,7 +127,7 @@ public class EmpleadoDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete from empleado where IdEmpleado = " + id;
+        String sql = "delete from empleado where IdEmpleado=" + id;
         try {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);

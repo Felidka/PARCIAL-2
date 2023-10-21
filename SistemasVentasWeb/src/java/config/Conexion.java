@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author asanc
+ * @author asancA
  */
 public class Conexion {
     Connection con=null;
