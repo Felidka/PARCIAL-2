@@ -22,35 +22,38 @@ public class ProductoDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r;
-    
-    public Producto buscar(int id){
-        Producto p=new Producto();
-        String sql="select * from producto where idproducto="+id;
+
+    public Producto buscar(int id) {
+        Producto p = new Producto();
+        String sql = "select * from producto where idproducto=" + id;
         try {
-            cone=cn.ConexionMethod();
-            ps=cone.prepareStatement(sql);
-            rs=ps.executeQuery();
-            while(rs.next()){
-               p.setId(rs.getInt(1));
-               p.setNom(rs.getString(2));
-               p.setPre(rs.getString(3));
-               p.setStock(rs.getInt(4));
-               p.setEstado(rs.getString(5));
+            cone = cn.ConexionMethod();
+            ps = cone.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getInt(1));
+                p.setNom(rs.getString(2));
+                p.setPre(rs.getString(3));
+                p.setStock(rs.getInt(4));
+                p.setEstado(rs.getString(5));
             }
         } catch (Exception e) {
+            System.out.println("Error al buscar producto");
         }
-            return p;
-}
-        
-    public int actualizarstock(int id, int stock){
+        return p;
+    }
 
-        String sql="update producto set stock=? where idproducto=?";
+    public int actualizarstock(int id, int stock) {
+
+        String sql = "update producto set stock=? where idproducto=?";
         try {
-            cone=cn.ConexionMethod();
-            ps=cone.prepareStatement(sql);
+            cone = cn.ConexionMethod();
+            ps = cone.prepareStatement(sql);
             ps.setInt(1, stock);
-            ps.setInt(2,id);
+            ps.setInt(2, id);
         } catch (Exception e) {
+            System.out.println("Error al actualizar stock del producto");
+
         }
         return r;
     }
@@ -72,6 +75,7 @@ public class ProductoDAO {
                 lista.add(pro);
             }
         } catch (Exception e) {
+            System.out.println("Error al listar producto");
 
         }
         return lista;
@@ -88,6 +92,7 @@ public class ProductoDAO {
             ps.setString(4, pro.getEstado());
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error al agregar producto");
 
         }
         return r;
@@ -105,15 +110,16 @@ public class ProductoDAO {
                 pro.setNom(rs.getString(2));
                 pro.setPre(rs.getString(3));
                 pro.setStock(rs.getInt(4));
-                pro.setEstado(rs.getString(5));                
+                pro.setEstado(rs.getString(5));
 
             }
         } catch (Exception e) {
+            System.out.println("Error al listar productos por id");
 
         }
         return pro;
     }
-    
+
     public int actualizar(Producto pro) {
         String sql = "update producto set Nombres=?,Precio=?,Stock=?,Estado=? where IdProducto=?";
         try {
@@ -126,19 +132,19 @@ public class ProductoDAO {
             ps.setInt(5, pro.getId());
             ps.executeUpdate();
         } catch (Exception e) {
-
+            System.out.println("Error al actualizar producto");
         }
         return r;
     }
-    
-     public void delete(int id) {
-        String sql = "delete from producto where IdCliente=" + id;
+
+    public void delete(int id) {
+        String sql = "delete from producto where IdProducto=" + id;
         try {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
-
+            System.out.println("Error al eliminar producto");
         }
     }
 }

@@ -16,7 +16,7 @@
         <div class="d-flex">
             <div class="card col-sm-6">
                 <div class="card-body">
-                    <form accion="Controlador?menu=Empleado" method="POST">
+                    <form action="Controlador?menu=Empleado" method="POST">
                         <div class="form-group">
                             <label>Dni</label>
                             <input type="text" value="${empleado.getDni()}" name="txtDni" class="form-control">                    
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label>Usuario</label>
-                            <input type="text" value="${empleado.getUser()}" name="txtUsuario" class="form-control">                    
+                            <input type="text" value="${empleado.getUser()}" name="txtUser" class="form-control">                    
                         </div>
                         <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                         <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
@@ -46,6 +46,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>DNI</th>
                             <th>NOMBRES</th>
                             <th>TELEFONO</th>
@@ -64,10 +65,9 @@
                             <td>${em.getTel()}</td>
                             <td>${em.getEstado()}</td>
                             <td>${em.getUser()}</td>
-                            <td>
-                                
-                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id${em.getId()}">Editar</a>
-                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id${em.getId()}>Delete</a>
+                            <td>                               
+                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em.getId()}">Editar</a>
+                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${em.getId()}">Delete</a>
                             </td>
 
                         </tr>

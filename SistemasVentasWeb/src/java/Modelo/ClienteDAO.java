@@ -62,7 +62,7 @@ public class ClienteDAO {
                 lista.add(cli);
             }
         } catch (Exception e) {
-
+            System.out.println("No se puede listar los clientes");
         }
         return lista;
     }

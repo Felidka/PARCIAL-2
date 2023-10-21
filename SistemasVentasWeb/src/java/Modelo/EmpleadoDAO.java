@@ -65,7 +65,7 @@ public class EmpleadoDAO {
                 lista.add(em);
             }
         } catch (Exception e) {
-
+            System.out.println("No se puede listar a los empleados");
         }
         return lista;
     }
@@ -80,10 +80,9 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
-
             ps.executeUpdate();
         } catch (Exception e) {
-
+            System.out.println("No se puede agregar a los empleados");
         }
         return r;
     }
@@ -103,6 +102,7 @@ public class EmpleadoDAO {
                 emp.setUser(rs.getString(6));
             }
         } catch (Exception e) {
+            System.out.println("No se puede listar a los ids");
 
         }
         return emp;
@@ -121,7 +121,7 @@ public class EmpleadoDAO {
             ps.setInt(6, em.getId());
             ps.executeUpdate();
         } catch (Exception e) {
-
+            System.out.println("No se puede actualizar a los empleados");
         }
         return r;
     }
@@ -133,6 +133,7 @@ public class EmpleadoDAO {
             ps = cone.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("No se puede eliminar a los empleados");
 
         }
     }
