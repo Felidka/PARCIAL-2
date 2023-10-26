@@ -49,7 +49,7 @@ public class Controlador extends HttpServlet {
     int ide;
     int idc;
     int idp;
-    
+
     List<Venta> lista = new ArrayList<>();
 
     int item;
@@ -84,11 +84,14 @@ public class Controlador extends HttpServlet {
                     String tel = request.getParameter("txtTel");
                     String estado = request.getParameter("txtEstado");
                     String user = request.getParameter("txtUser");
+                    String contrasena = request.getParameter("txtContrasena");
                     emp.setDni(dni);
                     emp.setNom(nom);
                     emp.setTel(tel);
                     emp.setEstado(estado);
                     emp.setUser(user);
+                    emp.setContrasena(contrasena);
+                    System.out.println(contrasena);
                     edao.agregar(emp);
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
                     break;
@@ -104,11 +107,13 @@ public class Controlador extends HttpServlet {
                     String tel1 = request.getParameter("txtTel");
                     String estado1 = request.getParameter("txtEstado");
                     String user1 = request.getParameter("txtUser");
+                    String contrasena1 = request.getParameter("txtContrasena");
                     emp.setDni(dni1);
                     emp.setNom(nom1);
                     emp.setTel(tel1);
                     emp.setEstado(estado1);
                     emp.setUser(user1);
+                    emp.setContrasena(contrasena1);
                     emp.setId(ide);
                     edao.actualizar(emp);
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);

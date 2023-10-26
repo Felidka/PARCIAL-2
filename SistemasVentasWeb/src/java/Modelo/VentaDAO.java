@@ -45,7 +45,7 @@ public class VentaDAO {
                 idventas=rs.getString(1);
             }
         } catch (SQLException e){
-            System.out.println("Error ");
+            System.out.println("Error al listar por maximo las ventas");
         }
         return idventas;
     }
@@ -62,7 +62,7 @@ public class VentaDAO {
             ps.setString(6, ve.getEstado());
             ps.executeUpdate();
         } catch (SQLException e){
-            System.out.println("Error ");
+            System.out.println("Error al guardar la venta");
         }
         return r;
     }
@@ -77,7 +77,7 @@ public class VentaDAO {
             ps.setDouble(4, venta.getPrecio());
             ps.executeUpdate();
         } catch (SQLException e){
-            System.out.println("Error ");
+            System.out.println("Error al guardar detalle de venta ");
         }
         return r;
     }

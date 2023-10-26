@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -37,13 +38,15 @@ public class Validar extends HttpServlet {
         if (accion.equalsIgnoreCase("Ingresar")) {
             String user = request.getParameter("txtuser");
             String pass = request.getParameter("txtpass");
-            em = edao.validar(user, pass);
-            if (em.getUser() != null) {
-                request.setAttribute("usuario", em);
-                request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
+            Empleado emp = edao.validar(user, pass);
+                           
+                System.out.println("aqui"+emp.getDni());
+
+            if (emp.getDni() != null) {
+               
                 //request.setAttribute("usuario", em);
             } else {
-
+   System.out.println("User invalidor");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else {
@@ -85,7 +88,13 @@ public class Validar extends HttpServlet {
             String pass = request.getParameter("txtpass");
             em = edao.validar(user, pass);
             if (em.getUser() != null) {
+                HttpSession sesion = request.getSession();
+                System.out.println("Numero de session" + sesion.getId());
+                sesion.setAttribute("usuario", em);
+                System.out.println("entro en if vlidar");
+                request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
                 request.setAttribute("usuario", em);
+                
                 request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
                 //request.setAttribute("usuario", em);
             } else {

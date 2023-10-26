@@ -18,33 +18,40 @@ import java.util.List;
  */
 public class EmpleadoDAO {
 
-    Conexion cn=new Conexion();
+    Conexion cn = new Conexion();
     Connection cone;
     PreparedStatement ps;
     ResultSet rs;
     int r;
 
-    public Empleado validar(String user, String dni) {
-        Empleado em = new Empleado();
-        String sql = "select * from empleado where User=? and Dni=?";
+    public Empleado validar(String user, String contrasena) {
+        System.out.println("entro en validar");
+        Empleado pem = new Empleado();
+        String sql = "select * from empleado where User=? and contrasena=? ";
         try {
+            System.out.println("entro en validar try");
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
             ps.setString(1, user);
-            ps.setString(2, dni);
+            ps.setString(2, contrasena);
             rs = ps.executeQuery();
             while (rs.next()) {
-                em.setId(rs.getInt("IdEmpleado"));
-                em.setUser(rs.getString("User"));
-                em.setDni(rs.getString("Dni"));
-                em.setNom(rs.getString("Nombres"));
+                System.out.println("entro en validar while");
+                pem.setId(rs.getInt("IdEmpleado"));
+                pem.setUser(rs.getString("User"));
+                pem.setDni(rs.getString("Dni"));
+                pem.setNom(rs.getString("Nombres"));
+                pem.setContrasena(rs.getString("Contrasena"));
+                System.out.println(pem.getDni());
             }
             cone.close();
 
         } catch (SQLException e) {
-            System.out.println("Usuario no encontrado");
+            System.out.println("Usuario no encontrado" + e.getMessage());
         }
-        return em;
+        System.out.println("atras "+pem);
+
+        return pem;
     }
 
     public List Listar() {
@@ -62,6 +69,7 @@ public class EmpleadoDAO {
                 em.setTel(rs.getString(4));
                 em.setEstado(rs.getString(5));
                 em.setUser(rs.getString(6));
+                em.setContrasena(rs.getString(7));
                 lista.add(em);
             }
         } catch (Exception e) {
@@ -71,7 +79,7 @@ public class EmpleadoDAO {
     }
 
     public int agregar(Empleado em) {
-        String sql = "insert into empleado(Dni,Nombres,Telefono,Estado,User)values(?,?,?,?,?)";
+        String sql = "insert into empleado(Dni,Nombres,Telefono,Estado,User,Contrasena)values(?,?,?,?,?,?)";
         try {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
@@ -80,6 +88,7 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
+            ps.setString(6, em.getContrasena());
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("No se puede agregar a los empleados");
@@ -94,12 +103,13 @@ public class EmpleadoDAO {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 emp.setDni(rs.getString(2));
                 emp.setNom(rs.getString(3));
                 emp.setTel(rs.getString(4));
                 emp.setEstado(rs.getString(5));
                 emp.setUser(rs.getString(6));
+                emp.setContrasena(rs.getString(7));
             }
         } catch (Exception e) {
             System.out.println("No se puede listar a los ids");
@@ -109,7 +119,7 @@ public class EmpleadoDAO {
     }
 
     public int actualizar(Empleado em) {
-        String sql = "update empleado set Dni=?,Nombres=?,Telefono=?,Estado=?,User=? where IdEmpleado=?";
+        String sql = "update empleado set Dni=?,Nombres=?,Telefono=?,Estado=?,User=?,Contrasena=? where IdEmpleado=?";
         try {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
@@ -118,7 +128,8 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
-            ps.setInt(6, em.getId());
+            ps.setString(6, em.getContrasena());
+            ps.setInt(7, em.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("No se puede actualizar a los empleados");

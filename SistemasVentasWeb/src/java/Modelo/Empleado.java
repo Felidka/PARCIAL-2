@@ -4,30 +4,42 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author asanc
  */
-public class Empleado {
+public class Empleado implements Serializable{
     private int id;
     private String dni;
     private String nom;
     private String tel;
     private String estado;
     private String user;
-    
+    private String contrasena;
     public Empleado(){
         
     }
 
-    public Empleado(int id, String dni, String nom, String tel, String estado, String user) {
+    public Empleado(int id, String dni, String nom, String tel, String estado, String user, String contra) {
         this.id = id;
         this.dni = dni;
         this.nom = nom;
         this.tel = tel;
         this.estado = estado;
         this.user = user;
+        this.contrasena = contra;
     }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
 
     public int getId() {
         return id;
@@ -76,5 +88,11 @@ public class Empleado {
     public void setUser(String user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "id=" + id + ", dni=" + dni + ", nom=" + nom + ", tel=" + tel + ", estado=" + estado + ", user=" + user + ", contrasena=" + contrasena + '}';
+    }
+    
     
 }
