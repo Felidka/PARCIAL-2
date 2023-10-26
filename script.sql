@@ -29,13 +29,14 @@ CREATE TABLE `empleado` (
   `Nombres` varchar(255) DEFAULT NULL,
   `Telefono` varchar(9) DEFAULT NULL,
   `Estado` varchar(1) DEFAULT NULL,
-  `User` varchar(8) DEFAULT NULL
+  `User` varchar(8) DEFAULT NULL,
+  `Contrasena` varchar(50) not null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `empleado` (`IdEmpleado`, `Dni`, `Nombres`, `Telefono`, `Estado`, `User`) VALUES
-(1, '123', 'Pedro Hernandez', '988252459', '1', 'emp01'),
-(2, '123', 'Roman Riquelme', '988252459', '1', 'Jo46'),
-(3, '123', 'Palermo Suarez', '453536458', '1', 'Em22');
+INSERT INTO `empleado` (`IdEmpleado`, `Dni`, `Nombres`, `Telefono`, `Estado`, `User`,`Contrasena`) VALUES
+(1, '123', 'Pedro Hernandez', '988252459', '1', 'emp01', '123'),
+(2, '123', 'Roman Riquelme', '988252459', '1', 'Jo46', '123'),
+(3, '123', 'Palermo Suarez', '453536458', '1', 'Em22', '123');
 
 -- --------------------------------------------------------
 CREATE TABLE `producto` (
