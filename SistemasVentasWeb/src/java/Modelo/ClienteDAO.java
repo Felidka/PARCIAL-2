@@ -8,6 +8,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ClienteDAO {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
         }
         return cli;
@@ -61,8 +62,8 @@ public class ClienteDAO {
                 cli.setEstado(rs.getString(5));
                 lista.add(cli);
             }
-        } catch (Exception e) {
-            System.out.println("No se puede listar los clientes");
+        } catch (SQLException e) {
+            System.out.println("No se puede listar los clientes "+e.getMessage());
         }
         return lista;
     }
@@ -77,7 +78,7 @@ public class ClienteDAO {
             ps.setString(3, cli.getDirec());
             ps.setString(4, cli.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al agregar cliente");
 
         }
@@ -98,7 +99,7 @@ public class ClienteDAO {
                 cli.setEstado(rs.getString(5));
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al listar por id al cliente");
 
         }
@@ -116,7 +117,7 @@ public class ClienteDAO {
             ps.setString(4, cli.getEstado());
             ps.setInt(5, cli.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al actualizar cliente");
 
         }
@@ -129,7 +130,7 @@ public class ClienteDAO {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al eliminar cliente");
 
         }

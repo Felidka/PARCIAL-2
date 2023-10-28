@@ -3,7 +3,12 @@
     Created on : 5 Oct 2023, 19:40:17
     Author     : asanc
 --%>
+<%  
+  
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
+    
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

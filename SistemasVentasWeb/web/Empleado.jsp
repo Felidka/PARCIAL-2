@@ -3,6 +3,15 @@
     Created on : 11 Oct 2023, 18:03:28
     Author     : asanc
 --%>
+<%@page import = "Modelo.Empleado" %>
+<%  
+    HttpSession sesion = request.getSession();
+    Empleado emp = (Empleado) sesion.getAttribute("usuario");
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    if(emp!=null){
+    
+%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,7 +65,6 @@
                             <th>TELEFONO</th>
                             <th>ESTADO</th>
                             <th>USUARIO</th>
-                            <th>CONTRASENA</th>
                             <th>ACCIONES</th>
                             
                         </tr>
@@ -71,7 +79,6 @@
                                 <td>${em.getTel()}</td>
                                 <td>${em.getEstado()}</td>
                                 <td>${em.getUser()}</td>
-                                <td>${em.getContrasena()}</td>
                                 <td>                               
                                     <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em.getId()}">Editar</a>
                                     <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${em.getId()}">Delete</a>
@@ -107,3 +114,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </body>
 </html>
+ <%
+    }else{
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    %>

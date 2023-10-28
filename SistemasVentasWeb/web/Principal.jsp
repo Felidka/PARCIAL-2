@@ -3,12 +3,14 @@
     Created on : 5 Oct 2023, 19:41:28
     Author     : asanc
 --%>
-
+<%@page import = "Modelo.Empleado" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "Modelo.Empleado" %>
 <%  
     HttpSession sesion = request.getSession();
     Empleado emp = (Empleado) sesion.getAttribute("usuario");
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
     if(emp!=null){
     
 %>
@@ -65,9 +67,10 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     </body>
-    <%
+   
+</html>
+ <%
     }else{
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
     %>
-</html>

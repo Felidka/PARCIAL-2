@@ -24,7 +24,7 @@ public class EmpleadoDAO {
     ResultSet rs;
     int r;
 
-    public Empleado validar(String user, String contrasena) {
+    public Empleado validar(Empleado item) {
         System.out.println("entro en validar");
         Empleado pem = new Empleado();
         String sql = "select * from empleado where User=? and contrasena=? ";
@@ -32,8 +32,8 @@ public class EmpleadoDAO {
             System.out.println("entro en validar try");
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
-            ps.setString(1, user);
-            ps.setString(2, contrasena);
+            ps.setString(1, item.getUser());
+            ps.setString(2, item.getContrasena());
             rs = ps.executeQuery();
             while (rs.next()) {
                 System.out.println("entro en validar while");
@@ -41,7 +41,7 @@ public class EmpleadoDAO {
                 pem.setUser(rs.getString("User"));
                 pem.setDni(rs.getString("Dni"));
                 pem.setNom(rs.getString("Nombres"));
-                pem.setContrasena(rs.getString("Contrasena"));
+                //pem.setContrasena(rs.getString("Contrasena"));
                 System.out.println(pem.getDni());
             }
             cone.close();
@@ -90,8 +90,8 @@ public class EmpleadoDAO {
             ps.setString(5, em.getUser());
             ps.setString(6, em.getContrasena());
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("No se puede agregar a los empleados");
+        } catch (SQLException e) {
+            System.out.println("No se puede agregar a los empleados:"+e.getMessage());
         }
         return r;
     }
