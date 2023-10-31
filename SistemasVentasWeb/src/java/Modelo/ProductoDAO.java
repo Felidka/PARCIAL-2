@@ -8,6 +8,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +38,8 @@ public class ProductoDAO {
                 p.setStock(rs.getInt(4));
                 p.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
-            System.out.println("Error al buscar producto");
+        } catch (SQLException e) {
+            System.out.println("Error al buscar producto:"+e.getMessage());
         }
         return p;
     }
@@ -51,8 +52,8 @@ public class ProductoDAO {
             ps = cone.prepareStatement(sql);
             ps.setInt(1, stock);
             ps.setInt(2, id);
-        } catch (Exception e) {
-            System.out.println("Error al actualizar stock del producto");
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar stock del producto:" + e.getMessage());
 
         }
         return r;
@@ -74,8 +75,8 @@ public class ProductoDAO {
                 pro.setEstado(rs.getString(5));
                 lista.add(pro);
             }
-        } catch (Exception e) {
-            System.out.println("Error al listar producto");
+        } catch (SQLException e) {
+            System.out.println("Error al listar producto:"+e.getMessage());
 
         }
         return lista;
@@ -91,8 +92,8 @@ public class ProductoDAO {
             ps.setInt(3, pro.getStock());
             ps.setString(4, pro.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Error al agregar producto");
+        } catch (SQLException e) {
+            System.out.println("Error al agregar producto:"+e.getMessage());
 
         }
         return r;
@@ -113,8 +114,8 @@ public class ProductoDAO {
                 pro.setEstado(rs.getString(5));
 
             }
-        } catch (Exception e) {
-            System.out.println("Error al listar productos por id");
+        } catch (SQLException e) {
+            System.out.println("Error al listar productos por id:"+e.getMessage());
 
         }
         return pro;
@@ -131,8 +132,8 @@ public class ProductoDAO {
             ps.setString(4, pro.getEstado());
             ps.setInt(5, pro.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Error al actualizar producto");
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar producto:" + e.getMessage());
         }
         return r;
     }
@@ -143,8 +144,8 @@ public class ProductoDAO {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Error al eliminar producto");
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar producto:" + e.getMessage());
         }
     }
 }

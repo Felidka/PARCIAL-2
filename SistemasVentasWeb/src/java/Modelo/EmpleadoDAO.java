@@ -27,7 +27,7 @@ public class EmpleadoDAO {
     public Empleado validar(Empleado item) {
         System.out.println("entro en validar");
         Empleado pem = new Empleado();
-        String sql = "select * from empleado where User=? and contrasena=? ";
+        String sql = "select * from empleado where User=? and Contrasena=?";
         try {
             System.out.println("entro en validar try");
             cone = cn.ConexionMethod();
@@ -72,8 +72,8 @@ public class EmpleadoDAO {
                 em.setContrasena(rs.getString(7));
                 lista.add(em);
             }
-        } catch (Exception e) {
-            System.out.println("No se puede listar a los empleados");
+        } catch (SQLException e) {
+            System.out.println("No se puede listar a los empleados " + e.getMessage());
         }
         return lista;
     }
@@ -111,8 +111,8 @@ public class EmpleadoDAO {
                 emp.setUser(rs.getString(6));
                 emp.setContrasena(rs.getString(7));
             }
-        } catch (Exception e) {
-            System.out.println("No se puede listar a los ids");
+        } catch (SQLException e) {
+            System.out.println("No se puede listar a los ids " + e.getMessage());
 
         }
         return emp;
@@ -131,8 +131,8 @@ public class EmpleadoDAO {
             ps.setString(6, em.getContrasena());
             ps.setInt(7, em.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("No se puede actualizar a los empleados");
+        } catch (SQLException e) {
+            System.out.println("No se puede actualizar a los empleados:" + e.getMessage());
         }
         return r;
     }
@@ -143,8 +143,8 @@ public class EmpleadoDAO {
             cone = cn.ConexionMethod();
             ps = cone.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("No se puede eliminar a los empleados");
+        } catch (SQLException e) {
+            System.out.println("No se puede eliminar a los empleados " + e.getMessage());
 
         }
     }

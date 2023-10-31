@@ -40,7 +40,11 @@
                         </div>
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" value="${cliente.getEstado()}" name="txtEstado" class="form-control">                    
+                            <select name="txtEstado" class="form-control">
+                                
+                                <option>Disponible</option>
+                                <option>Agotado</option>
+                            </select>                   
                         </div>
                         <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                         <input type="submit" name="accion" value="Actualizar" class="btn btn-success">

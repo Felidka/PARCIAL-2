@@ -30,7 +30,7 @@ public class VentaDAO {
             }
 
         } catch (SQLException e) {
-             System.out.println("Error al generar numero de serie");
+             System.out.println("Error al generar numero de serie: " + e.getMessage());
         }
         return numeroserie;
     }
@@ -45,7 +45,7 @@ public class VentaDAO {
                 idventas=rs.getString(1);
             }
         } catch (SQLException e){
-            System.out.println("Error al listar por maximo las ventas");
+            System.out.println("Error al listar por maximo las ventas:" + e.getMessage());
         }
         return idventas;
     }
@@ -62,7 +62,7 @@ public class VentaDAO {
             ps.setString(6, ve.getEstado());
             ps.executeUpdate();
         } catch (SQLException e){
-            System.out.println("Error al guardar la venta");
+            System.out.println("Error al guardar la venta:" + e.getMessage());
         }
         return r;
     }
@@ -77,7 +77,7 @@ public class VentaDAO {
             ps.setDouble(4, venta.getPrecio());
             ps.executeUpdate();
         } catch (SQLException e){
-            System.out.println("Error al guardar detalle de venta ");
+            System.out.println("Error al guardar detalle de venta :" + e.getMessage());
         }
         return r;
     }

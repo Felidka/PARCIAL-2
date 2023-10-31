@@ -34,15 +34,6 @@ import java.util.logging.Logger;
  */
 public class Controlador extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     Empleado emp = new Empleado();
     EmpleadoDAO edao = new EmpleadoDAO();
 
@@ -91,9 +82,14 @@ public class Controlador extends HttpServlet {
                         String dni = request.getParameter("txtDni");
                         String nom = request.getParameter("txtNombres");
                         String tel = request.getParameter("txtTel");
-                        String estado = request.getParameter("txtEstado");
                         String user = request.getParameter("txtUser");
                         String contrasena = asegurarClave(request.getParameter("txtContrasena"));
+                        String estado;
+                        if(request.getParameter("txtEstado").equals("Activo")){
+                            estado = "1";
+                        }else{
+                            estado = "2";
+                        }
                         emp.setDni(dni);
                         emp.setNom(nom);
                         emp.setTel(tel);
@@ -114,9 +110,14 @@ public class Controlador extends HttpServlet {
                         String dni1 = request.getParameter("txtDni");
                         String nom1 = request.getParameter("txtNombres");
                         String tel1 = request.getParameter("txtTel");
-                        String estado1 = request.getParameter("txtEstado");
+                        String estado1;
                         String user1 = request.getParameter("txtUser");
-                        String contrasena1 = request.getParameter("txtContrasena");
+                        String contrasena1 = asegurarClave(request.getParameter("txtContrasena"));
+                        if(request.getParameter("txtEstado").equals("Activo")){
+                            estado1 = "1";
+                        }else{
+                            estado1 = "2";
+                        }
                         emp.setDni(dni1);
                         emp.setNom(nom1);
                         emp.setTel(tel1);
@@ -148,7 +149,12 @@ public class Controlador extends HttpServlet {
                         String dni = request.getParameter("txtDni");
                         String nom = request.getParameter("txtNombres");
                         String direc = request.getParameter("txtDir");
-                        String estado = request.getParameter("txtEstado");
+                        String estado;
+                        if(request.getParameter("txtEstado").equals("Activo")){
+                            estado = "1";
+                        }else{
+                            estado = "2";
+                        }
                         cli.setDni(dni);
                         cli.setNom(nom);
                         cli.setDirec(direc);
@@ -166,7 +172,12 @@ public class Controlador extends HttpServlet {
                         String dni1 = request.getParameter("txtDni");
                         String nom1 = request.getParameter("txtNombres");
                         String direc1 = request.getParameter("txtDir");
-                        String estado1 = request.getParameter("txtEstado");
+                        String estado1;
+                        if(request.getParameter("txtEstado").equals("Activo")){
+                            estado1 = "1";
+                        }else{
+                            estado1 = "2";
+                        }
                         cli.setDni(dni1);
                         cli.setNom(nom1);
                         cli.setDirec(direc1);
@@ -196,12 +207,18 @@ public class Controlador extends HttpServlet {
                         String nom = request.getParameter("txtNombres");
                         String pre = request.getParameter("txtPre");
                         int stock = Integer.parseInt(request.getParameter("txtStock"));
-                        String estado = request.getParameter("txtEstado");
+                        String estado;
+                        if(request.getParameter("txtEstado").equals("Disponible")){
+                            estado = "1";
+                        }else{
+                            estado = "2";
+                        }
                         pro.setNom(nom);
                         pro.setPre(pre);
-                        pro.setStock(stock);
+                        pro.setStock(stock);                      
                         pro.setEstado(estado);
                         prodao.agregar(pro);
+                        
                         request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                         break;
                     case "Editar":
@@ -214,7 +231,12 @@ public class Controlador extends HttpServlet {
                         String nom1 = request.getParameter("txtNombres");
                         String pre1 = request.getParameter("txtPre");
                         int stock1 = Integer.parseInt(request.getParameter("txtStock"));
-                        String estado1 = request.getParameter("txtEstado");
+                        String estado1;
+                        if(request.getParameter("txtEstado").equals("Disponible")){
+                            estado1 = "1";
+                        }else{
+                            estado1 = "2";
+                        }
                         pro.setNom(nom1);
                         pro.setPre(pre1);
                         pro.setStock(stock1);

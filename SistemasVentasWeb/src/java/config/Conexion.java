@@ -17,11 +17,11 @@ public class Conexion {
     Connection con = null;
     String url = "jdbc:mysql://localhost:3306/bd_ventas";
     String user = "root";
-    String password = "123456";
+    String password = "";
 
     public Connection ConexionMethod() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             con = (Connection) DriverManager.getConnection(url, user, password);
             System.out.println("Se conecto la base de datos");
         } catch (ClassNotFoundException e) {

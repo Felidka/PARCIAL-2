@@ -40,7 +40,11 @@
                         </div>
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" value="${empleado.getEstado()}" name="txtEstado" class="form-control">                    
+                            <select name="txtEstado" class="form-control">
+                                
+                                <option>Disponible</option>
+                                <option>Agotado</option>
+                            </select>                  
                         </div>
                         <div class="form-group">
                             <label>Usuario</label>

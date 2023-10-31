@@ -3,17 +3,33 @@
     Created on : 11 Oct 2023, 18:03:44
     Author     : asanc
 --%>
+<%@page import = "Modelo.Empleado" %>
+<%  
+    HttpSession sesion = request.getSession();
+    Empleado emp = (Empleado) sesion.getAttribute("usuario");
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    if(emp!=null){
+    
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>VENTAS</title>
+        <style>
+            @media print{
+                .parte1,.btn,.accion{
+                    display: none;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="d-flex">
-            <div class="col-lg-5">
+            <div class="col-lg-5 parte01">
                 <div class="card">
                     <form action="Controlador?menu=NuevaVenta" method="POST">
                         <div class="card-body">
@@ -87,7 +103,7 @@
                                     <th>Precio</th>
                                     <th>Cantidad</th>
                                     <th>Subtotal</th>
-                                    <th>Acciones</th>
+                                    <th class="accion">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,7 +126,7 @@
                     </div>
                     <div class="card-footer d-flex">
                         <div class="col-sm-6">
-                            <a class="btn btn-primary" href="Controlador?menu=NuevaVenta&accion=GenerarVenta">Generar Venta</a>
+                            <a class="btn btn-primary" href="Controlador?menu=NuevaVenta&accion=GenerarVenta"onclick="print()"class="btn btn-success">Generar Venta</a>
                             <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
 
                         </div>
@@ -127,3 +143,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     </body>
 </html>
+<%
+   }else{
+       request.getRequestDispatcher("index.jsp").forward(request, response);
+   }
+%>

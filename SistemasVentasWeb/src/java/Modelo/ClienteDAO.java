@@ -41,7 +41,7 @@ public class ClienteDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Error al buscar cliente");
+            System.out.println("Error al buscar cliente" + e.getMessage());
         }
         return cli;
     }
@@ -79,7 +79,7 @@ public class ClienteDAO {
             ps.setString(4, cli.getEstado());
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error al agregar cliente");
+            System.out.println("Error al agregar cliente "+ e.getMessage());
 
         }
         return r;
@@ -100,7 +100,7 @@ public class ClienteDAO {
 
             }
         } catch (SQLException e) {
-            System.out.println("Error al listar por id al cliente");
+            System.out.println("Error al listar por id al cliente " + e.getMessage());
 
         }
         return cli;
@@ -118,7 +118,7 @@ public class ClienteDAO {
             ps.setInt(5, cli.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error al actualizar cliente");
+            System.out.println("Error al actualizar cliente " + e.getMessage());
 
         }
         return r;
@@ -131,7 +131,7 @@ public class ClienteDAO {
             ps = cone.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error al eliminar cliente");
+            System.out.println("Error al eliminar cliente" + e.getMessage());
 
         }
     }
